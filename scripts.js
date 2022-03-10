@@ -100,7 +100,7 @@ console.log("#", counter++, lastElement); //5
  * Check to see if the numbers array is empty. Print to the console true if the 
  * array is empty, otherwise print false
  */
-if (numbers.length < 1) {
+if (numbers.length == 0) {
     console.log("#", counter++, true);
 } else {
     console.log("#", counter++, false);
@@ -171,15 +171,30 @@ console.log("#", counter++, myFavoriteFoods);
  */
 
 const randomMeal = (array) => {
-    while (array.length < 10) {
+    // while (array.length < 10) {
+    //     let addOption = prompt("Please, enter another food or beverage option so we may prepare the best possible meal for you.")
+    //     myFavoriteFoods.push(addOption);
+    // }; Commenting this out because we haven't learned it yet, but I wanted to see if it would work--it did!!
+
+    if (array.length < 10) {
         let addOption = prompt("Please, enter another food or beverage option so we may prepare the best possible meal for you.")
-        myFavoriteFoods.push(addOption);
-    };
+            myFavoriteFoods.push(addOption);
+        }; //Adds one more option if there are less than 10 elements in the array
 
     let firstCourse = array[Math.floor(Math.random() * array.length)];
     let secondCourse = array[Math.floor(Math.random() * array.length)];
     let thirdCourse = array[Math.floor(Math.random() * array.length)];
-    return `Tonight, you'll enjoy a preparation of ${firstCourse}, followed by deconstructed ${secondCourse}, and ${thirdCourse} a la mode for dessert. Bon appetit!`;
+
+    let tonightsMenu = `Tonight, you'll enjoy a preparation of ${firstCourse}, followed by deconstructed ${secondCourse}, and ${thirdCourse} a la mode for dessert.  Bon appetit!`;
+
+    if (firstCourse == secondCourse && secondCourse == thirdCourse) {
+        tonightsMenu = [`Tonight,`, `you'll enjoy a preparation of ${firstCourse},`, `followed by deconstructed ${secondCourse},`, `and ${thirdCourse} a la mode for dessert.`,  `Bon appetit!`]
+        tonightsMenu.pop();
+        tonightsMenu.push(`I'm impressed by your discerning taste. Only the finest ${firstCourse} for you.`);
+        tonightsMenu.toString(); //this looks ugly!!
+    };
+
+    return tonightsMenu;
 };
 
 console.log(randomMeal(myFavoriteFoods));
